@@ -16,46 +16,42 @@ class _AlbumListPageState extends State<AlbumListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('List Page'),
+        title: const Text('Album View'),
       ),
       body: GridView.builder(
-          padding: const EdgeInsetsDirectional.all(12),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, crossAxisSpacing: 4, mainAxisSpacing: 4),
-          itemCount: albumController.count(),
-          itemBuilder: (BuildContext context, int index) {
-            var album = albumController.find(index);
+        padding: const EdgeInsetsDirectional.all(12),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3, crossAxisSpacing: 10, mainAxisSpacing: 10),
+        itemCount: albumController.count(),
+        itemBuilder: (BuildContext context, int index) {
+          var album = albumController.find(index);
 
-            return GestureDetector(
-              child: Card(
-                elevation: 2,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                  child: Column(
-                    children: [
-                      Image(
-                        fit: BoxFit.contain,
-                        image: NetworkImage(album.img),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        album.title,
-                        style: const TextStyle(fontSize: 12),
-                      )
-                    ],
-                  ),
-                ),
+          //タップイベントを持ったGrid Viewの画像リスト
+          return GestureDetector(
+            child: Card(
+              elevation: 2,
+              child: Image(
+                fit: BoxFit.contain,
+                image: NetworkImage(album.img),
               ),
-              //画像をタップした時の動作
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        // アルバム詳細ページに遷移
-                        builder: (context) => AlbumAboutPage(album: album)));
-              },
-            );
-          }),
+            ),
+
+            //画像を押したときの挙動
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      // アルバム詳細ページに遷移
+                      builder: (context) => AlbumAboutPage(album: album)));
+            },
+
+            //画像を長押しした時の動作
+            // onLongPress: () {
+            //   //長押ししたらアルバム名が表示される挙動を実装したい
+            // },
+          );
+        },
+      ),
     );
   }
 }

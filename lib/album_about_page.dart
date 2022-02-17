@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
+import 'for_album.dart';
 
 class AlbumAboutPage extends StatelessWidget {
-  const AlbumAboutPage({Key? key}) : super(key: key);
+  final Album album;
+  const AlbumAboutPage({Key? key, required this.album}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('About Page'),
+        title: Text(album.title),
       ),
-      body: const Center(
-          child:
-              Text('This is Album About Page', style: TextStyle(fontSize: 20))),
+      body: Padding(
+        padding: const EdgeInsets.all(50),
+        child:
+            Card(elevation: 24, child: Image(image: NetworkImage(album.img))),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.pop(context),
         child: const Icon(Icons.skip_previous),
