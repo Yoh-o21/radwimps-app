@@ -3,7 +3,9 @@ import 'for_album.dart';
 
 class AlbumAboutPage extends StatelessWidget {
   final Album album;
-  const AlbumAboutPage({Key? key, required this.album}) : super(key: key);
+  final int id;
+  const AlbumAboutPage({Key? key, required this.album, required this.id})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +15,11 @@ class AlbumAboutPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(50),
-        child:
-            Card(elevation: 24, child: Image(image: NetworkImage(album.img))),
+        child: Card(
+            elevation: 24,
+            child: Hero(
+                tag: 'jacket_$id',
+                child: Image(image: NetworkImage(album.img)))),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.pop(context),
