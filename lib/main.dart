@@ -10,17 +10,18 @@ class RadwimpsApp extends StatelessWidget {
   /// コンストラクタ
   const RadwimpsApp({Key? key}) : super(key: key);
 
-  /// 画面を作成する
+  /// 画面描画
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       // アプリケーションのタイトル
       title: 'RADWIMPS App',
-      // アプリケーションのテーマ
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      // Todoリスト画面を生成しホーム画面とする
+      //テーマ
+      theme: ThemeData(primarySwatch: Colors.green),
+      //ダークテーマ
+      // theme: ThemeData.dark(),
+
+      // アルバムリスト画面を生成しホーム画面とする
       home: const AlbumListPage(),
     );
   }
