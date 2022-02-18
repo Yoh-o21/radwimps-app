@@ -11,15 +11,24 @@ class AlbumAboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(album.title),
+        title: Text(
+          album.title,
+        ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(50),
-        child: Card(
-            elevation: 24,
-            child: Hero(
-                tag: 'jacket_$id',
-                child: Image(image: NetworkImage(album.img)))),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(50),
+            child: Card(
+                elevation: 24,
+                child: Hero(
+                    tag: 'jacket_$id',
+                    child: Image(image: NetworkImage(album.img)))),
+          ),
+          const Divider(
+            thickness: 2,
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.pop(context),
