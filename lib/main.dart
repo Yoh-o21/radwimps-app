@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'album_list_page.dart';
 
 /// エントリーポイント
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const RadwimpsApp());

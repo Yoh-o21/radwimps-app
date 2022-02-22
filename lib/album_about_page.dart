@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'for_album.dart';
+import 'album.dart';
 
 class AlbumAboutPage extends StatelessWidget {
   final Album album;
@@ -22,12 +22,13 @@ class AlbumAboutPage extends StatelessWidget {
             child: Card(
                 elevation: 24,
                 child: Hero(
-                    tag: 'jacket_$id',
-                    child: Image(image: NetworkImage(album.img)))),
+                    tag: id, child: Image(image: NetworkImage(album.img)))),
           ),
           const Divider(
             thickness: 2,
           ),
+          Text(album.year.toString() + '年',
+              style: const TextStyle(fontSize: 30)),
         ],
       ),
       floatingActionButton: FloatingActionButton(
