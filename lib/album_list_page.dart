@@ -25,18 +25,15 @@ class _AlbumListPageState extends State<AlbumListPage> {
         child: const Icon(Icons.sort_rounded),
         onPressed: () {
           setState(() {
-            albums = FirebaseFirestore.instance
-                .collection('id_albums')
-                .orderBy('id', descending: true);
+            isDecending == true
+                ? albums = FirebaseFirestore.instance
+                    .collection('id_albums')
+                    .orderBy('id', descending: false)
+                : albums = FirebaseFirestore.instance
+                    .collection('id_albums')
+                    .orderBy('id', descending: true);
             _gridview(albums);
-
-            // if (!isDecending) {
-            //   albums = FirebaseFirestore.instance
-            //       .collection('id_albums')
-            //       .orderBy('id', descending: false);
-            //   isDecending = !isDecending;
-            //   _gridview(albums);
-            // }
+            isDecending = !isDecending;
           });
         },
       ),
