@@ -13,7 +13,7 @@ class AlbumListPage extends StatefulWidget {
 class _AlbumListPageState extends State<AlbumListPage> {
   var isDecending = false;
   Query<Map<String, dynamic>> albums =
-      FirebaseFirestore.instance.collection('id_albums').orderBy('id');
+      FirebaseFirestore.instance.collection('id_albums').orderBy('release');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,10 +28,10 @@ class _AlbumListPageState extends State<AlbumListPage> {
             isDecending == true
                 ? albums = FirebaseFirestore.instance
                     .collection('id_albums')
-                    .orderBy('id', descending: false)
+                    .orderBy('release', descending: false)
                 : albums = FirebaseFirestore.instance
                     .collection('id_albums')
-                    .orderBy('id', descending: true);
+                    .orderBy('release', descending: true);
             isDecending = !isDecending;
           });
         },
@@ -69,7 +69,7 @@ Widget _gridview(Query albums) {
                     MaterialPageRoute(
                         // アルバム詳細ページに遷移
                         builder: (context) =>
-                            AlbumAboutPage(album: album, id: index)));
+                            AlbumAboutPage(album: album, index: index)));
               },
 
               child: Card(

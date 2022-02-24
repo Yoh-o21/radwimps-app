@@ -4,18 +4,19 @@ import 'album.dart';
 
 class AlbumAboutPage extends StatelessWidget {
   final Album album;
-  final int id;
-  const AlbumAboutPage({Key? key, required this.album, required this.id})
+  final int index;
+  const AlbumAboutPage({Key? key, required this.album, required this.index})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Column(
           children: [
             const SizedBox(
-              height: 30,
+              height: 50,
             ),
             SizedBox(
               width: 200,
@@ -25,7 +26,8 @@ class AlbumAboutPage extends StatelessWidget {
                 child: Card(
                     elevation: 24,
                     child: Hero(
-                        tag: id, child: Image(image: NetworkImage(album.img)))),
+                        tag: index,
+                        child: Image(image: NetworkImage(album.img)))),
               ),
             ),
             Column(
@@ -34,14 +36,14 @@ class AlbumAboutPage extends StatelessWidget {
                 Text(
                   album.title,
                   style: const TextStyle(
-                      fontSize: 14, fontWeight: FontWeight.bold),
+                      fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
                   width: 20,
                 ),
                 Text(
                   album.year.toString() + '年',
-                  style: const TextStyle(fontSize: 14),
+                  style: const TextStyle(fontSize: 16),
                 )
               ],
             ),
@@ -66,19 +68,9 @@ class AlbumAboutPage extends StatelessWidget {
                   itemCount: snapshot.data!.docs.length,
                   shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index) {
-                    return SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: Column(
-                        children: [
-                          ListTile(
-                            title:
-                                Text(snapshot.data!.docs[index].get('title')),
-                          ),
-                          const Divider(
-                            height: 1,
-                          )
-                        ],
-                      ),
+                    return ListTile(
+                      leading: const Icon(Icons.music_note),
+                      title: Text(snapshot.data!.docs[index].get('title')),
                     );
                   },
                 );
