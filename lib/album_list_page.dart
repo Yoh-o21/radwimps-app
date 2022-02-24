@@ -32,7 +32,6 @@ class _AlbumListPageState extends State<AlbumListPage> {
                 : albums = FirebaseFirestore.instance
                     .collection('id_albums')
                     .orderBy('id', descending: true);
-            _gridview(albums);
             isDecending = !isDecending;
           });
         },
@@ -51,7 +50,6 @@ Widget _gridview(Query albums) {
             child: CircularProgressIndicator(),
           );
         }
-
         return GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3, crossAxisSpacing: 10, mainAxisSpacing: 10),
@@ -59,9 +57,10 @@ Widget _gridview(Query albums) {
           padding: const EdgeInsets.all(2),
           itemBuilder: (BuildContext context, int index) {
             Album album = Album(
-                snapshot.data?.docs[index].get('title'),
-                snapshot.data?.docs[index].get('year'),
-                snapshot.data?.docs[index].get('img'));
+                snapshot.data!.docs[index].get('title'),
+                snapshot.data!.docs[index].get('year'),
+                snapshot.data!.docs[index].get('img'),
+                snapshot.data!.docs[index].id.toString());
             return GestureDetector(
               //画像を押したときの挙動
               onTap: () {
