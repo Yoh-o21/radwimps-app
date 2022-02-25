@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'album.dart';
 
 class AlbumAboutPage extends StatelessWidget {
@@ -42,7 +43,7 @@ class AlbumAboutPage extends StatelessWidget {
                   width: 20,
                 ),
                 Text(
-                  album.year.toString() + '年',
+                  DateFormat('yyyy年M月d日').format(album.release).toString(),
                   style: const TextStyle(fontSize: 16),
                 )
               ],

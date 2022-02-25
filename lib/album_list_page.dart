@@ -56,11 +56,10 @@ Widget _gridview(Query albums) {
           itemCount: snapshot.data!.docs.length,
           padding: const EdgeInsets.all(2),
           itemBuilder: (BuildContext context, int index) {
+            var arg = snapshot.data!.docs[index];
+            DateTime release = arg.get('release').toDate();
             Album album = Album(
-                snapshot.data!.docs[index].get('title'),
-                snapshot.data!.docs[index].get('year'),
-                snapshot.data!.docs[index].get('img'),
-                snapshot.data!.docs[index].id.toString());
+                arg.get('title'), release, arg.get('img'), arg.id.toString());
             return GestureDetector(
               //画像を押したときの挙動
               onTap: () {
