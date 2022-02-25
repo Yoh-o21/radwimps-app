@@ -12,6 +12,7 @@ class AlbumListPage extends StatefulWidget {
 
 class _AlbumListPageState extends State<AlbumListPage> {
   var isDecending = false;
+  var isOriginalAlbum = false;
   Query<Map<String, dynamic>> albums =
       FirebaseFirestore.instance.collection('id_albums').orderBy('release');
   @override
@@ -19,23 +20,36 @@ class _AlbumListPageState extends State<AlbumListPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('アルバム一覧'),
+        actions: [
+          //フィルター機能
+          IconButton(
+              onPressed: () => setState(() {
+                    isOriginalAlbum == true
+                        ? albums = FirebaseFirestore.instance
+                            .collection('id_albums')
+                            .orderBy('release', descending: false)
+                        : albums = FirebaseFirestore.instance
+                            .collection('id_albums')
+                            .where('isOriginalAlbum', isEqualTo: true);
+                    isOriginalAlbum = !isOriginalAlbum;
+                  }),
+              icon: const Icon(Icons.filter)),
+          //ソート機能
+          IconButton(
+              onPressed: () => setState(() {
+                    isDecending == true
+                        ? albums = FirebaseFirestore.instance
+                            .collection('id_albums')
+                            .orderBy('release', descending: false)
+                        : albums = FirebaseFirestore.instance
+                            .collection('id_albums')
+                            .orderBy('release', descending: true);
+                    isDecending = !isDecending;
+                  }),
+              icon: const Icon(Icons.sort))
+        ],
       ),
       body: _gridview(albums),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.sort_rounded),
-        onPressed: () {
-          setState(() {
-            isDecending == true
-                ? albums = FirebaseFirestore.instance
-                    .collection('id_albums')
-                    .orderBy('release', descending: false)
-                : albums = FirebaseFirestore.instance
-                    .collection('id_albums')
-                    .orderBy('release', descending: true);
-            isDecending = !isDecending;
-          });
-        },
-      ),
     );
   }
 }
