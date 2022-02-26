@@ -70,8 +70,8 @@ class AlbumAboutPage extends StatelessWidget {
                   shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
-                      leading: const Icon(Icons.music_note),
                       title: Text(snapshot.data!.docs[index].get('title')),
+                      trailing: const Icon(Icons.music_video),
                     );
                   },
                 );
