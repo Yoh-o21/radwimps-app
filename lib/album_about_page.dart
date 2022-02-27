@@ -23,7 +23,6 @@ class AlbumAboutPage extends StatelessWidget {
               decoration: const BoxDecoration(
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey,
                     spreadRadius: 3,
                     blurRadius: 10,
                   ),

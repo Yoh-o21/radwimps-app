@@ -21,9 +21,9 @@ class RadwimpsApp extends StatelessWidget {
       // アプリケーションのタイトル
       title: 'RADWIMPS App',
       //テーマ
-      theme: ThemeData(primarySwatch: Colors.green),
+      // theme: ThemeData(primarySwatch: Colors.green),
       //ダークテーマ
-      // theme: ThemeData.dark(),
+      theme: ThemeData.dark(),
 
       // アルバムリスト画面を生成しホーム画面とする
       home: const AlbumListPage(),
