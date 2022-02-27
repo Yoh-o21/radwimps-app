@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:radwimps_app/album.dart';
 import 'album_about_page.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class AlbumListPage extends StatefulWidget {
   const AlbumListPage({Key? key}) : super(key: key);
@@ -89,10 +90,15 @@ Widget _gridview(Query albums) {
                 elevation: 2,
                 child: Hero(
                   tag: index,
-                  child: Image(
-                    fit: BoxFit.contain,
-                    image: NetworkImage(album.img),
+                  child: CachedNetworkImage(
+                    imageUrl: album.img,
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
+                  // child: Image(
+                  //   fit: BoxFit.contain,
+                  //   image: NetworkImage(album.img)
+                  // ),
                 ),
               ),
             );
