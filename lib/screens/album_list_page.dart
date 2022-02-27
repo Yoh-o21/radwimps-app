@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:radwimps_app/album.dart';
+import 'package:radwimps_app/models/album.dart';
 import 'album_about_page.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 

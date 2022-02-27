@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'album.dart';
+import '../models/album.dart';
 
 class AlbumAboutPage extends StatelessWidget {
   final Album album;

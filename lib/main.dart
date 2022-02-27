@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'album_list_page.dart';
+import 'screens/album_list_page.dart';
 
 /// エントリーポイント
 Future<void> main() async {
