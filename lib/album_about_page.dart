@@ -16,20 +16,21 @@ class AlbumAboutPage extends StatelessWidget {
         scrollDirection: Axis.vertical,
         child: Column(
           children: [
-            const SizedBox(
-              height: 50,
-            ),
-            SizedBox(
+            Container(
               width: 200,
               height: 200,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Card(
-                    elevation: 24,
-                    child: Hero(
-                        tag: index,
-                        child: Image(image: NetworkImage(album.img)))),
+              margin: const EdgeInsets.only(top: 60, bottom: 10),
+              decoration: const BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    spreadRadius: 3,
+                    blurRadius: 10,
+                  ),
+                ],
               ),
+              child: Hero(
+                  tag: index, child: Image(image: NetworkImage(album.img))),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -39,9 +40,6 @@ class AlbumAboutPage extends StatelessWidget {
                   style: const TextStyle(
                       fontSize: 16, fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(
-                  width: 20,
-                ),
                 Text(
                   DateFormat('yyyy年M月d日').format(album.release).toString(),
                   style: const TextStyle(fontSize: 16),
@@ -50,6 +48,8 @@ class AlbumAboutPage extends StatelessWidget {
             ),
             const Divider(
               thickness: 2,
+              indent: 30,
+              endIndent: 30,
             ),
             StreamBuilder(
               stream: FirebaseFirestore.instance
@@ -66,8 +66,11 @@ class AlbumAboutPage extends StatelessWidget {
                   );
                 }
                 return ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: snapshot.data!.docs.length,
                   shrinkWrap: true,
+                  padding: const EdgeInsets.only(
+                      top: 0, left: 16, right: 16, bottom: 20),
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       title: Text(snapshot.data!.docs[index].get('title')),
