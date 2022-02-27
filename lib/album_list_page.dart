@@ -92,8 +92,10 @@ Widget _gridview(Query albums) {
                   tag: index,
                   child: CachedNetworkImage(
                     imageUrl: album.img,
-                    placeholder: (context, url) => CircularProgressIndicator(),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+                    placeholder: (context, url) =>
+                        const CircularProgressIndicator(),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                   ),
                   // child: Image(
                   //   fit: BoxFit.contain,
